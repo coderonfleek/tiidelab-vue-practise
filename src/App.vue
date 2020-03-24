@@ -1,8 +1,8 @@
 <template>
   <div>
     <div>
-      <router-link to="/">Home</router-link>&nbsp;|&nbsp;
-      <router-link to="/about">About Us</router-link>
+      <a href="#" @click="goToPage('/', 'Home')">Home</a>&nbsp;|&nbsp;
+      <a href="#" @click="goToPage('/about', 'About What we do')">About Us</a>
     </div>
 
     <!-- Router Outlet -->
@@ -16,6 +16,16 @@ export default {
 
   data: () => ({
     //
-  })
+  }),
+
+  methods: {
+    goToPage(path, title) {
+      //Update the page name in our store
+      this.$store.commit("changePageName", title);
+
+      //Route to the appropriate page
+      this.$router.push({ path: path });
+    }
+  }
 };
 </script>
